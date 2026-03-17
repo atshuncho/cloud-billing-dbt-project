@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_billing_extract
+    description: "Staging model for raw cloud billing data."
+    columns:
+      - name: account_id
+        description: "Cloud account identifier."
+        tests:
+          - not_null
+
+      - name: billing_date
+        tests:
+          - not_null
+
+      - name: vendor
+        tests:
+          - not_null
+
+  - name: stg_team_hierarchy
+    description: "Staging model for team hierarchy by account."
+    columns:
+      - name: account_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_service_table
+    description: "Maps service to service type."
+    columns:
+      - name: service
+        tests:
+          - not_null
+          - unique
+
+      - name: service_type
+        tests:
+          - not_null
+
+  - name: stg_discounts
+    description: "Discount lookup by service and item description."
+    columns:
+      - name: service
+        tests:
+          - not_null
+
+      - name: item_description
+        tests:
+          - not_null
