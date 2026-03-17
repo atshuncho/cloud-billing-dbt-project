@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: fct_cloud_billing
+    description: "Fact table for cloud billing data"
+    columns:
+      - name: account_id
+        tests:
+          - not_null
+
+      - name: billing_date
+        tests:
+          - not_null
+
+  - name: dim_service
+    description: "Service dimension table"
+    columns:
+      - name: service
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_team_hierarchy
+    description: "Team hierarchy dimension"
+    columns:
+      - name: account_id
+        tests:
+          - not_null
+          - unique
